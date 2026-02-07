@@ -1,4 +1,6 @@
-## Hi there 👋
+Hi there 👋
+
+Security+ certified professional with a strong foundation in MSP infrastructure management and adversarial defense. Specialist in hardening enterprise identity (AD/Entra ID) and email ecosystems (DMARC p=reject). Proven ability to bridge the gap between third-party penetration test findings and technical remediation in live, high-stakes environments.
 
 <!--
 **graeme-edwards/graeme-edwards** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
