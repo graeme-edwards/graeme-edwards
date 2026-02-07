@@ -1,4 +1,4 @@
-```markdown
+
 # Lab: Secure SOC Architecture (WireGuard, Bastion, & Wazuh Pipeline)
 **Focus:** Infrastructure-as-Code, Detection Engineering, and Private Telemetry
 
@@ -37,4 +37,23 @@ This architecture follows the **Principle of Least Privilege**. By separating th
 * **Sysmon** (Enhanced Windows Logging)
 * **Vultr VPC** (Network Segmentation)
 
-```
+## 6. Adversarial Emulation & Detection Testing
+To verify the integrity of the detection pipeline, I simulated a common credential theft technique used by real-world attackers.
+
+### Attack Scenario: OS Credential Dumping
+* **Technique:** [MITRE ATT&CK T1003 (OS Credential Dumping)](https://attack.mitre.org/techniques/T1003/)
+* **Execution:** Executed **Mimikatz** (`lsadump::sam`) on the Windows Server 2022 instance to attempt local SAM hash extraction.
+* **The Goal:** To trigger a high-fidelity alert in Wazuh and verify that the Sysmon telemetry was correctly mapped.
+
+![Mimikatz Execution](assets/mimikatz-execution.png)
+*Figure 1: Mimikatz running on the Windows Server 2022 Bastion host, successfully extracting NTLM hashes.*
+
+### Detection Logic & Custom Tuning
+* **Custom Rule Escalation:** I manually tuned the Wazuh `ossec` rules to escalate this specific detection to **Level 15 (Extremely High Severity)**.
+* **The Rationale:** In a production environment, credential dumping is a "critical stop" event. By increasing the severity from the default, I ensured that this alert stands out from lower-level system noise and demands immediate analyst response.
+* **Result:** The system successfully captured the `lsass.exe` process access via Sysmon Event ID 10 and generated a Level 15 alert within seconds of execution.
+
+TODO
+![Wazuh Level 15 Alert](assets/wazuh-alert.jpg)
+*Figure 2: Wazuh dashboard displaying the Level 15 alert for Mimikatz, confirming the success of the detection pipeline.*
+
