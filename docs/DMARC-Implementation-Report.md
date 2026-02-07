@@ -1,5 +1,4 @@
 
-```markdown
 # Project Closure Report: Enterprise Email Hardening (DMARC p=reject)
 **Project Lead:** Graeme Edwards  
 **Status:** Completed | Production Verified
@@ -36,6 +35,3 @@ Following a third-party penetration test, our organization’s email domain was 
 * **Business Continuity:** Zero ongoing deliverability issues for authorized school services.
 * **Security Posture:** Successfully remediated the critical finding from the 2025 Penetration Test.
 
-```
-
----
