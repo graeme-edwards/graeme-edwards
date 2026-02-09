@@ -65,6 +65,13 @@ During the implementation of the WireGuard tunnel, I encountered a critical serv
 
 ![Port conflict](assets/dns-using-wireguard-port-61999.png)
 
+![Port Conflict Analysis](assets/troubleshooting-port-conflict.png)
+
+Using `Get-Process` to identify that the Windows DNS Service (dns.exe) had dynamically occupied the required UDP ports.
+
+![Netsh Port Exclusion](assets/exclude-port-55555-for-wireguard.png)
+*Executing the `netsh int ipv4 add excludedportrange` command to reserve port 55555 for the VPN gateway.*
+
 ![WireGuard original port](assets/wireguard-61999-port-original.png)
 
 ![WireGuard bind socket error port](assets/wireguard-bind-socket-error.png)
